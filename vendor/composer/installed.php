@@ -3,7 +3,7 @@
         'name' => 'joselfonseca/laravel-api',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '29a2bb8f2cf37c425cb01ae007e817aca1c502d4',
+        'reference' => 'e20d2038265ffe6c236b47701411484cb244d9c4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -154,6 +154,15 @@
             'reference' => 'ea7dda77098b96e666c5ef382452f94841e439cd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'fruitcake/laravel-cors' => array(
+            'pretty_version' => 'v3.0.0',
+            'version' => '3.0.0.0',
+            'reference' => '7c036ec08972d8d5d9db637e772af6887828faf5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../fruitcake/laravel-cors',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -433,7 +442,7 @@
         'joselfonseca/laravel-api' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '29a2bb8f2cf37c425cb01ae007e817aca1c502d4',
+            'reference' => 'e20d2038265ffe6c236b47701411484cb244d9c4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -997,8 +1006,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Transformers\Users\UserTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class UsersController extends Controller
@@ -15,21 +16,21 @@ class UsersController extends Controller
     public function __construct(User $model)
     {
         $this->model = $model;
-        $this->middleware('permission:List users')->only('index');
-        $this->middleware('permission:List users')->only('show');
-        $this->middleware('permission:Create users')->only('store');
-        $this->middleware('permission:Update users')->only('update');
-        $this->middleware('permission:Delete users')->only('destroy');
+        // $this->middleware('permission:List users')->only('index');
+        // $this->middleware('permission:List users')->only('show');
+        // $this->middleware('permission:Create users')->only('store');
+        // $this->middleware('permission:Update users')->only('update');
+        // $this->middleware('permission:Delete users')->only('destroy');
     }
 
     public function index(Request $request)
     {
-        $paginator = $this->model->with('roles.permissions')->paginate($request->get('limit', config('app.pagination_limit', 20)));
+        $paginator = DB::table('users')->paginate($request->get('limit', config('app.pagination_limit', 20)));
         if ($request->has('limit')) {
             $paginator->appends('limit', $request->get('limit'));
         }
 
-        return fractal($paginator, new UserTransformer())->respond();
+        return $paginator;
     }
 
     public function show($id)

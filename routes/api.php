@@ -12,6 +12,7 @@ Route::put('passwords/reset', 'Api\Auth\PasswordsController@update');
 Route::get('/user-list-pdf', 'Api\Users\UsersController@userListPDF');
 Route::get('/userlist', 'Api\Users\UsersController@userList');
 Route::get('/user2', 'Api\Users\UsersController@index');
+Route::post('/user/auth/token', 'Api\Users\UsersController@index');
 
 
 

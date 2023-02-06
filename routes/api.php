@@ -9,9 +9,14 @@ Route::get('assets/{uuid}/render', 'Api\Assets\RenderFileController@show');
 Route::post('register', 'Api\Auth\RegisterController@store');
 Route::post('passwords/reset', 'Api\Auth\PasswordsController@store');
 Route::put('passwords/reset', 'Api\Auth\PasswordsController@update');
+Route::get('/user-list-pdf', 'Api\Users\UsersController@userListPDF');
+Route::get('/userlist', 'Api\Users\UsersController@userList');
+
+
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'users'], function () {
+        
         Route::get('/', 'Api\Users\UsersController@index');
         Route::post('/', 'Api\Users\UsersController@store');
         Route::get('/{uuid}', 'Api\Users\UsersController@show');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Transformers\Users\UserTransformer;
 use Illuminate\Http\Request;
+use PDF;
 
 class UsersController extends Controller
 {
@@ -83,4 +84,21 @@ class UsersController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function userListPDF(Request $request)
+{
+    // $users  =  $this->model->paginate($request->get('limit', config('app.pagination_limit', 20)));
+    $pdf = PDF::loadView('userlist');
+        return $pdf->download('userlist.pdf');
+    
+    
+}
+    public function useList(Request $request)
+    {
+        $user = $this->model->with('roles.permissions');
+
+        return fractal($user, new UserTransformer())->respond();
+    }
+
+
 }

@@ -8,6 +8,8 @@ use App\Transformers\Users\UserTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Excel;
+use App\Exports\UserExport;
 
 class UsersController extends Controller
 {
@@ -99,6 +101,12 @@ class UsersController extends Controller
         $user = $this->model->with('roles.permissions');
 
         return fractal($user, new UserTransformer())->respond();
+    }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new UserExport, 'users2.xlsx');
+        
     }
 
 

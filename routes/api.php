@@ -13,12 +13,11 @@ Route::get('/user-list-pdf', 'Api\Users\UsersController@userListPDF');
 Route::get('/userlist', 'Api\Users\UsersController@userList');
 Route::get('/user2', 'Api\Users\UsersController@index');
 Route::post('/user/auth/token', 'Api\Users\UsersController@index');
-
+Route::get('/Excel', 'Api\Users\UsersController@exportExcel');
 
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'users'], function () {
-        
         Route::get('/', 'Api\Users\UsersController@index');
         Route::post('/', 'Api\Users\UsersController@store');
         Route::get('/{uuid}', 'Api\Users\UsersController@show');

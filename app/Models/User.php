@@ -12,6 +12,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class User.
@@ -67,5 +69,22 @@ class User extends Authenticatable
         $model = static::query()->create($attributes);
 
         return $model;
+    }
+
+    public static function getUserTable()
+    {
+        $results = DB::table('users')->get()
+            ->map(function ($user) {
+                return [
+                    'ID' => $user->id,
+                    'Name' => $user->name,
+                    'Email' => $user->email,
+                    'Created_at' => $user->created_at,
+                    'Updated_at' => $user->updated_at,
+                ];
+            })
+        ->toArray();
+
+        return $results;
     }
 }
